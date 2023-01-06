@@ -1,24 +1,24 @@
 package com.elopez.pokemonfeature.model
 
 data class PokemonData(
-    val abilities: List<Ability>,
-    val base_experience: Int,
-    val forms: List<Form>,
-    val game_indices: List<GameIndice>,
-    val height: Int,
-    val held_items: List<HeldItem>,
-    val id: Int,
-    val is_default: Boolean,
-    val location_area_encounters: String,
-    val moves: List<Move>,
-    val name: String,
-    val order: Int,
-    val past_types: List<Any>,
-    val species: Species,
-    val sprites: Sprites,
-    val stats: List<Stat>,
-    val types: List<Type>,
-    val weight: Int
+    var abilities: List<Ability>? = null,
+    var base_experience: Int = 0,
+    var forms: List<Form>? = emptyList(),
+    var game_indices: List<GameIndice>? = emptyList(),
+    var height: Int = 0,
+    var held_items: List<HeldItem>? = emptyList(),
+    var id: Int = 0,
+    var is_default: Boolean = false,
+    var location_area_encounters: String? = null,
+    var moves: List<Move>? = emptyList(),
+    var name: String? = null,
+    var order: Int = 0,
+    var past_types: List<Any>? = emptyList(),
+    var species: Species? = null,
+    var sprites: Sprites? = null,
+    var stats: List<Stat>? = emptyList(),
+    var types: List<Type>? = emptyList(),
+    var weight: Int = 0
 ){
 
 }
