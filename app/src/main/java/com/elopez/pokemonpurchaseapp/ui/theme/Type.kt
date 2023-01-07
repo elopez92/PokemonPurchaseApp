@@ -2,14 +2,16 @@ package com.elopez.pokemonpurchaseapp.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.elopez.pokemonpurchaseapp.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = FontFamily(Font(R.font.pokemon_solid)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
@@ -26,3 +28,5 @@ val Typography = Typography(
     )
     */
 )
+
+val pokemonFont = FontFamily(Font(R.font.pokemon_solid))

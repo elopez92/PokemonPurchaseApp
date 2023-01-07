@@ -23,7 +23,7 @@ class PokemonViewModel: ViewModel() {
             withContext(Dispatchers.Main){
                 loading.value = true
             }
-            val response = retService.getPokemonData(name)
+            val response = retService.getPokemonData(name.lowercase())
 
             pokemonResponse = response.body()!!
             withContext(Dispatchers.Main){

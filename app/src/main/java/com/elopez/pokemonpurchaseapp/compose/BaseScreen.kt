@@ -1,8 +1,7 @@
 package com.elopez.pokemonpurchaseapp.compose
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.elopez.pokemonpurchaseapp.PokemonViewModel
+import com.elopez.pokemonpurchaseapp.ui.theme.Typography
+import com.elopez.pokemonpurchaseapp.ui.theme.pokemonFont
 
 @Composable
 fun BaseScreen(
@@ -32,8 +33,12 @@ fun BaseScreen(
     ){
         Column{
             TextFieldView(viewModel)
-            Button(onClick = { viewModel.getPokemonData() }) {
-                
+            OutlinedButton(onClick = { viewModel.getPokemonData() },
+            modifier = modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(16.dp)) {
+                    Text("Buy", color = Color.Black, fontFamily = pokemonFont, fontSize = 16.sp)
+                    PaddingValues(16.dp)
             }
         }
     }
@@ -42,11 +47,12 @@ fun BaseScreen(
 @Composable
 fun TextFieldView(viewModel: PokemonViewModel){
 
-    TextField(
+    OutlinedTextField(
         value = viewModel.name,
         onValueChange = {
             viewModel.name = it
         },
-        textStyle = TextStyle(color = Color.Black, fontSize = 16.sp)
+        label = { Text("Enter Pokemon name", fontFamily = pokemonFont)},
+        textStyle = TextStyle(color = Color.Black, fontSize = 16.sp, fontFamily = pokemonFont, letterSpacing = 2.sp)
     )
 }
