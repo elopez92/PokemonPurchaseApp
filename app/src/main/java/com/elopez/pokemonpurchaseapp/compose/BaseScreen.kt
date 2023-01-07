@@ -30,7 +30,7 @@ fun BaseScreen(
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
-        Row{
+        Column{
             TextFieldView(viewModel)
             Button(onClick = { viewModel.getPokemonData() }) {
                 

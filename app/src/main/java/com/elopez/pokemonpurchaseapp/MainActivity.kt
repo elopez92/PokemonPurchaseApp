@@ -21,7 +21,9 @@ class MainActivity : ComponentActivity() {
         if(savedInstanceState == null)
             viewModel.getPokemonData()
         setContent {
-            Navigation(viewModel = viewModel)
+            PokemonPurchaseAppTheme(){
+                Navigation(viewModel = viewModel)
+            }
         }
     }
 }
