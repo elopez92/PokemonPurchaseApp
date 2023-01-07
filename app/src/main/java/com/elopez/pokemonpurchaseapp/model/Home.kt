@@ -1,8 +1,12 @@
 package com.elopez.pokemonfeature.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Home(
     val front_default: String,
-    val front_female: Any,
+    val front_female: String,
     val front_shiny: String,
-    val front_shiny_female: Any
-)
+    val front_shiny_female: String
+): Parcelable

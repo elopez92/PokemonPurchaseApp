@@ -1,7 +1,10 @@
 package com.elopez.pokemonfeature.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Versions(
     @SerializedName("generation-i")
     val generation_i: GenerationI,
@@ -19,4 +22,4 @@ data class Versions(
     val generation_vii: GenerationVii,
     @SerializedName("generation-viii")
     val generation_viii: GenerationViii
-)
+): Parcelable

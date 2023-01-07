@@ -1,10 +1,13 @@
 package com.elopez.pokemonfeature.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Other(
     val dream_world: DreamWorld,
     val home: Home,
     @SerializedName("official-artwork")
     val official_artwork: OfficialArtwork
-)
+): Parcelable

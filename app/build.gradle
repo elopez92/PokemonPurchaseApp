@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -47,6 +48,9 @@ android {
 }
 
 dependencies {
+    def nav_version = "2.5.2"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
 
     // define any required OkHttp artifacts without version
