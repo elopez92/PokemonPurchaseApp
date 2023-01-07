@@ -1,6 +1,7 @@
 package com.elopez.pokemonfeature.model
 
 import android.os.Parcelable
+import androidx.annotation.Nullable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

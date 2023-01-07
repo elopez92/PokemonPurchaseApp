@@ -3,6 +3,8 @@ package com.elopez.pokemonpurchaseapp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elopez.pokemonfeature.model.PokemonData
@@ -11,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PokemonViewModel: ViewModel() {
+    val pokemonNotExist = mutableStateOf(false)
     var pokemonResponse: PokemonData by mutableStateOf(PokemonData())
     var name: String by mutableStateOf("")
 
@@ -24,8 +27,12 @@ class PokemonViewModel: ViewModel() {
                 loading.value = true
             }
             val response = retService.getPokemonData(name.lowercase())
-
-            pokemonResponse = response.body()!!
+            if(response.body() == null){
+                pokemonNotExist.value = true
+            }else {
+                pokemonNotExist.value = false
+                pokemonResponse = response.body()!!
+            }
             withContext(Dispatchers.Main){
                 loading.value = false
             }
