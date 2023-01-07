@@ -12,12 +12,13 @@ import kotlinx.coroutines.withContext
 
 class PokemonViewModel: ViewModel() {
     var pokemonResponse: PokemonData by mutableStateOf(PokemonData())
+    var name: String by mutableStateOf("")
 
     val loading = mutableStateOf(false)
 
     val retService = RetrofitInstance.getRetrofitInstance().create(PokemonApi::class.java)
 
-    fun getPokemonData(name: String){
+    fun getPokemonData(){
         viewModelScope.launch(Dispatchers.IO){
             withContext(Dispatchers.Main){
                 loading.value = true

@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.elopez.pokemonpurchaseapp.compose.Navigation
 import com.elopez.pokemonpurchaseapp.ui.theme.PokemonPurchaseAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,17 +19,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val viewModel by viewModels<PokemonViewModel>()
         if(savedInstanceState == null)
-            viewModel.getPokemonData("pikachu")
+            viewModel.getPokemonData()
         setContent {
-            PokemonPurchaseAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            Navigation(viewModel = viewModel)
         }
     }
 }

@@ -29,7 +29,7 @@ fun Navigation(viewModel: PokemonViewModel) {
             nullable = false
         }
             )) {
-            SummaryScreen
+            SummaryScreen()
         }
     }
 }
