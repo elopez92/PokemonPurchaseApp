@@ -12,8 +12,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PokemonViewModel: ViewModel() {
-    val user = User(name = "Ash", last="Ketchum", accountNumber = 1234567890, balance = 1000.0, email="email@yahoo.com")
+    val user = User(name = "Ash", last="Ketchum", accountNumber = 1234567890, balance = 1.0, email="email@yahoo.com")
     val pokemonNotExist = mutableStateOf(false)
+    var notEnough = mutableStateOf(false)
     var pokemonResponse: PokemonData by mutableStateOf(PokemonData())
     var name: String by mutableStateOf("")
 
@@ -30,12 +31,16 @@ class PokemonViewModel: ViewModel() {
             val response = retService.getPokemonData(name.lowercase())
             if(response.body() == null){
                 pokemonNotExist.value = true
-            }else {
-                pokemonNotExist.value = false
-                pokemonResponse = response.body()!!
-                withContext(Dispatchers.Main){
-                    changeScreens.value = true
+            }  else {
+                if(((response.body()?.base_experience?.times(.01))?.times(6))!! > user.balance){
+                    notEnough.value = true
+                } else {
+                    pokemonResponse = response.body()!!
+                    withContext(Dispatchers.Main) {
+                        changeScreens.value = true
+                    }
                 }
+                pokemonNotExist.value = false
             }
             withContext(Dispatchers.Main){
                 loading.value = false

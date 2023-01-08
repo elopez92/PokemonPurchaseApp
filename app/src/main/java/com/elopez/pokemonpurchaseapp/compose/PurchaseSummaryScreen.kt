@@ -25,6 +25,7 @@ import com.elopez.pokemonpurchaseapp.model.User
 import com.elopez.pokemonpurchaseapp.ui.theme.pokemonFont
 import com.elopez.pokemonpurchaseapp.utils.loadPicture
 import java.text.DecimalFormat
+import java.util.*
 
 @Composable
 fun PurchaseSummaryScreen(
@@ -51,7 +52,11 @@ fun PurchaseSummaryScreen(
                 .padding(16.dp)
         ) {
             Text(
-                text = "${viewModel.pokemonResponse.name?.capitalize() ?: ""} #${viewModel.pokemonResponse.id ?: ""}",
+                text = "${viewModel.pokemonResponse.name?.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.ROOT
+                    ) else it.toString()
+                } ?: ""} #${viewModel.pokemonResponse.id ?: ""}",
                 textAlign = TextAlign.Center,
                 modifier = modifier.fillMaxWidth(),
                 fontSize = 20.sp,
@@ -88,16 +93,5 @@ fun PurchaseSummaryScreen(
         ) {
             Text("Complete Purchase", color = Color.White, fontFamily = pokemonFont)
         }
-    }
-}
-
-@Composable
-fun fullWidthTextComposable(text1: String, text2: Any){
-    Row(modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween){
-        Text(text = text1, modifier = Modifier.weight(3f))
-        Text(text = text2.toString(), textAlign = TextAlign.End, modifier = Modifier
-            .padding(16.dp, 8.dp, 0.dp, 0.dp)
-            .weight(1f))
     }
 }

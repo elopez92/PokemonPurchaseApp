@@ -18,6 +18,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,10 +26,8 @@ import androidx.navigation.NavController
 import com.elopez.pokemonfeature.model.Icons
 import com.elopez.pokemonpurchaseapp.PokemonViewModel
 import com.elopez.pokemonpurchaseapp.Screen
-import com.elopez.pokemonpurchaseapp.ui.theme.CeruleanBlue
-import com.elopez.pokemonpurchaseapp.ui.theme.GoldenYellow
-import com.elopez.pokemonpurchaseapp.ui.theme.Typography
-import com.elopez.pokemonpurchaseapp.ui.theme.pokemonFont
+import com.elopez.pokemonpurchaseapp.ui.theme.*
+import java.text.DecimalFormat
 
 @Composable
 fun BaseScreen(
@@ -38,14 +37,36 @@ fun BaseScreen(
     modifier: Modifier = Modifier
 ) {
 
+    val df = DecimalFormat("#.##")
         val focusManager = LocalFocusManager.current
         Box(
             modifier = Modifier
-                .padding(8.dp)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+                .padding(16.dp)
+                .fillMaxSize()
         ) {
             Column {
+                Text(
+                    "Welcome ${viewModel.user.name} ${viewModel.user.last}",
+                    fontSize = 20.sp,
+                    color = BostonUniversityRed,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                    textAlign = TextAlign.Center
+                )
+                fullWidthTextComposable(
+                    text1 = "Account number",
+                    text2 = viewModel.user.accountNumber
+                )
+                fullWidthTextComposable(
+                    text1 = "Balance",
+                    text2 = "$${df.format(viewModel.user.balance)}"
+                )
+
+            }
+            Column(
+                modifier = modifier.align(Alignment.Center)
+            ){
                 TextFieldView(viewModel, focusManager)
                 Button(
                     onClick = {
@@ -67,12 +88,12 @@ fun BaseScreen(
 
 @Composable
 fun TextFieldView(viewModel: PokemonViewModel, focusManager: FocusManager){
-    var isError = viewModel.pokemonNotExist.value
+    var showMessage = viewModel.pokemonNotExist.value
     OutlinedTextField(
         value = viewModel.name,
         onValueChange = {
             viewModel.name = it
-            isError = false
+            showMessage = false
         },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         keyboardActions = KeyboardActions(
@@ -81,32 +102,27 @@ fun TextFieldView(viewModel: PokemonViewModel, focusManager: FocusManager){
             viewModel.getPokemonData()
             }),
         trailingIcon = {
-                       if(isError)
+                       if(showMessage)
                            Icon(androidx.compose.material.icons.Icons.Filled.Warning,"error", tint = MaterialTheme.colors.error)
         },
         singleLine = true,
-        isError = isError,
+        isError = showMessage,
         label = { Text("Enter Pokemon name", fontFamily = pokemonFont, color = CeruleanBlue)},
         textStyle = TextStyle(color = Color.Black, fontSize = 16.sp, fontFamily = pokemonFont, letterSpacing = 2.sp)
     )
-    if(isError || viewModel.pokemonNotExist.value) {
+    if(showMessage || viewModel.pokemonNotExist.value || viewModel.notEnough.value) {
+        var errorText = "Error. Try again"
         if (viewModel.pokemonNotExist.value) {
-            Text(
-                text = "Pokemon doesn't exist. Try another.",
-                color = MaterialTheme.colors.error,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 16.dp),
-                fontFamily = pokemonFont
-            )
-        } else {
-            Text(
-                text = "Error. Try again",
-                color = MaterialTheme.colors.error,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 16.dp),
-                fontFamily = pokemonFont
-            )
+            errorText = "Pokemon doesn't exist. Try another."
+        } else if(viewModel.notEnough.value){
+            errorText = "You do not have sufficient funds."
         }
-
+        Text(
+            text = errorText,
+            color = MaterialTheme.colors.error,
+            style = MaterialTheme.typography.caption,
+            modifier = Modifier.padding(start = 16.dp),
+            fontFamily = pokemonFont
+        )
     }
 }
