@@ -45,7 +45,7 @@ fun PurchaseSummaryScreen(
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .alpha(.4f)
+                .alpha(.3f)
         )
         Column(
             modifier = modifier

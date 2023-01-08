@@ -1,6 +1,7 @@
 package com.elopez.pokemonpurchaseapp.compose
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
@@ -11,11 +12,13 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -25,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.elopez.pokemonfeature.model.Icons
 import com.elopez.pokemonpurchaseapp.PokemonViewModel
+import com.elopez.pokemonpurchaseapp.R
 import com.elopez.pokemonpurchaseapp.Screen
 import com.elopez.pokemonpurchaseapp.ui.theme.*
 import java.text.DecimalFormat
@@ -44,6 +48,13 @@ fun BaseScreen(
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
+            Image(
+            painter = painterResource(id = R.drawable.pok_ball_icon),
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .alpha(.1f)
+        )
             Column {
                 Text(
                     "Welcome ${viewModel.user.name} ${viewModel.user.last}",
