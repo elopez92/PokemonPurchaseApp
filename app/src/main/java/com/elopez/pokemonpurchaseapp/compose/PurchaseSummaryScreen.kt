@@ -1,15 +1,19 @@
 package com.elopez.pokemonpurchaseapp.compose
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.style.TextAlign
@@ -35,6 +39,13 @@ fun PurchaseSummaryScreen(
     Box(
         modifier = modifier.fillMaxSize()
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.pok_ball_icon),
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .alpha(.4f)
+        )
         Column(
             modifier = modifier
                 .padding(16.dp)
@@ -54,9 +65,10 @@ fun PurchaseSummaryScreen(
                     bitmap = img.asImageBitmap(),
                     contentDescription = viewModel.pokemonResponse.name,
                     modifier = modifier
-                        .height(90.dp)
+                        .height(200.dp)
+                        .width(200.dp)
                         .align(Alignment.CenterHorizontally),
-                    contentScale = ContentScale.Fit,
+                    contentScale = ContentScale.FillBounds,
                     alignment = Alignment.Center,
                 )
             }
@@ -84,6 +96,8 @@ fun fullWidthTextComposable(text1: String, text2: Any){
     Row(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween){
         Text(text = text1, modifier = Modifier.weight(3f))
-        Text(text = text2.toString(), textAlign = TextAlign.End, modifier = Modifier.padding(16.dp, 8.dp, 0.dp, 0.dp).weight(1f))
+        Text(text = text2.toString(), textAlign = TextAlign.End, modifier = Modifier
+            .padding(16.dp, 8.dp, 0.dp, 0.dp)
+            .weight(1f))
     }
 }
