@@ -83,6 +83,9 @@ fun BaseScreen(
                     PaddingValues(16.dp)
                 }
             }
+            if(viewModel.notEnough.value){
+                AppAlertDialog(viewModel, modifier.align(Alignment.Center))
+            }
     }
 }
 
