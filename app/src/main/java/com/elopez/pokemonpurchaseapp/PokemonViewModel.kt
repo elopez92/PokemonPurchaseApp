@@ -6,11 +6,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elopez.pokemonpurchaseapp.model.PokemonData
+import com.elopez.pokemonpurchaseapp.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PokemonViewModel: ViewModel() {
+    val user = User(name = "Ash", last="Ketchum", accountNumber = 1234567890, balance = 1000.0, email="email@yahoo.com")
     val pokemonNotExist = mutableStateOf(false)
     var pokemonResponse: PokemonData by mutableStateOf(PokemonData())
     var name: String by mutableStateOf("")
@@ -31,10 +33,12 @@ class PokemonViewModel: ViewModel() {
             }else {
                 pokemonNotExist.value = false
                 pokemonResponse = response.body()!!
+                withContext(Dispatchers.Main){
+                    changeScreens.value = true
+                }
             }
             withContext(Dispatchers.Main){
                 loading.value = false
-                changeScreens.value = true
             }
         }
     }

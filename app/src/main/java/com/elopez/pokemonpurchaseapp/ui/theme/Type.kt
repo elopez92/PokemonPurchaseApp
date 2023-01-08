@@ -13,7 +13,8 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily(Font(R.font.pokemon_solid)),
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
+        letterSpacing = 2.sp
     )
     /* Other default text styles to override
     button = TextStyle(
