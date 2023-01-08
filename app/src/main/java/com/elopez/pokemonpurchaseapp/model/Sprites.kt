@@ -1,6 +1,8 @@
-package com.elopez.pokemonfeature.model
+package com.elopez.pokemonpurchaseapp.model
 
 import android.os.Parcelable
+import com.elopez.pokemonfeature.model.Other
+import com.elopez.pokemonfeature.model.Versions
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

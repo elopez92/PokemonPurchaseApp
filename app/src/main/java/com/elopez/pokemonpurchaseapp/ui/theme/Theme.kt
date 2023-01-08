@@ -10,13 +10,17 @@ private val DarkColorPalette = darkColors(
     primary = CeruleanBlue,
     primaryVariant = GoldFoil,
     secondary = GoldenYellow,
-    error = Red
+    error = Red,
+    background = BostonUniversityRed,
+    surface = BostonUniversityRed
 )
 
 private val LightColorPalette = lightColors(
     primary = CeruleanBlue,
     primaryVariant = GoldFoil,
-    secondary = GoldenYellow
+    secondary = GoldenYellow,
+    background = BostonUniversityRed,
+    surface = BostonUniversityRed
 
     /* Other default colors to override
     background = Color.White,

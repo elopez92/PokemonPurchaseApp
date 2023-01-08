@@ -18,25 +18,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel by viewModels<PokemonViewModel>()
-        if(savedInstanceState == null)
-            viewModel.getPokemonData()
         setContent {
             PokemonPurchaseAppTheme(){
                 Navigation(viewModel = viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PokemonPurchaseAppTheme {
-        Greeting("Android")
     }
 }

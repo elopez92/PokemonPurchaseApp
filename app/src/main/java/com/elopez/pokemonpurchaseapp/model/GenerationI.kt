@@ -1,6 +1,7 @@
 package com.elopez.pokemonfeature.model
 
 import android.os.Parcelable
+import com.elopez.pokemonpurchaseapp.model.RedBlue
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 

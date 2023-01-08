@@ -20,16 +20,15 @@ fun Navigation(viewModel: PokemonViewModel) {
                 loading = viewModel.loading,
                 navController
             )
+            if(viewModel.changeScreens.value){
+                //Toast.makeText(LocalContext.current, "Pokemon found", Toast.LENGTH_SHORT).show()
+                navController.navigate(Screen.PurchaseSummaryScreen.withArgs())
+                viewModel.changeScreens.value = false
+            }
         }
-        composable(
-            route = Screen.SummaryScreen.route + "/{summary}",
-            arguments = listOf(navArgument("summary")
+        composable(route = Screen.PurchaseSummaryScreen.route)
         {
-            type = AssetParamType()
-            nullable = false
-        }
-            )) {
-            SummaryScreen()
+            PurchaseSummaryScreen(viewModel)
         }
     }
 }

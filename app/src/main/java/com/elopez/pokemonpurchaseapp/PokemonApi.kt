@@ -1,6 +1,6 @@
 package com.elopez.pokemonpurchaseapp
 
-import com.elopez.pokemonfeature.model.PokemonData
+import com.elopez.pokemonpurchaseapp.model.PokemonData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -2,7 +2,7 @@ package com.elopez.pokemonpurchaseapp
 
 import android.os.Bundle
 import androidx.navigation.NavType
-import com.elopez.pokemonfeature.model.PokemonData
+import com.elopez.pokemonpurchaseapp.model.PokemonData
 import com.google.gson.Gson
 
 class AssetParamType: NavType<PokemonData>(isNullableAllowed = false) {
